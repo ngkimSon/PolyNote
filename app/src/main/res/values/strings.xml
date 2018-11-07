@@ -9,6 +9,7 @@
     <string name="toolbar_title">Notes</string>
     <string name="action_search">Search</string>
     <string name="search_hint">Search…</string>
+    <string name="nothing">Nothing here!</string>
 
 </resources>
 

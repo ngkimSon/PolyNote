@@ -20,15 +20,20 @@
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name=".NoteActivity"
+            android:theme="@style/Nobar" />
+        <activity
+            android:name=".WelcomeActivity"
+            android:theme="@style/WellcomeBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".NoteActivity"
-            android:theme="@style/Nobar" />
     </application>
 
 </manifest>
