@@ -14,7 +14,7 @@ public class NoteActivity extends AppCompatActivity {
     private ImageView img;
     private EditText title;
     private EditText notes;
-    private FloatingActionButton fab;
+    private com.github.clans.fab.FloatingActionButton fabCamera, fabGallery;
 
 
     @Override
@@ -25,7 +25,8 @@ public class NoteActivity extends AppCompatActivity {
         img = (ImageView) findViewById(R.id.img);
         title = (EditText) findViewById(R.id.title);
         notes = (EditText) findViewById(R.id.notes);
-        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fabCamera = findViewById(R.id.fabCamera);
+        fabGallery = findViewById(R.id.fabGallery);
         setSupportActionBar(toolbar);
 
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
@@ -36,10 +37,16 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(NoteActivity.this, "more", Toast.LENGTH_SHORT).show();
+                Toast.makeText(NoteActivity.this, "Camera", Toast.LENGTH_SHORT).show();
+            }
+        });
+        fabGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(NoteActivity.this, "Gallery", Toast.LENGTH_SHORT).show();
             }
         });
     }

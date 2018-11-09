@@ -2,7 +2,11 @@
 <resources>
     <color name="colorPrimary">#f7be00</color>
     <color name="colorPrimaryDark">#f7be00</color>
-    <color name="colorAccent">#f70000</color>
+    <color name="colorAccent">#d93f3f</color>
     <color name="contact_name">#333333</color>
     <color name="contact_number">#8c8c8c</color>
+    <color name="msg_no_notes">#999</color>
+    <color name="hint_enter_note">#89c3c3c3</color>
+    <color name="timestamp">#858585</color>
+    <color name="note_list_text">#232323</color>
 </resources>
