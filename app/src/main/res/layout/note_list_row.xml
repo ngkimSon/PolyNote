@@ -1,40 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    android:paddingBottom="@dimen/dimen_10"
-    android:paddingLeft="@dimen/activity_margin"
-    android:paddingRight="@dimen/activity_margin"
-    android:paddingTop="@dimen/dimen_10">
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/dot"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/dot_height"
-        android:layout_marginRight="@dimen/dot_margin_right"
-        android:layout_marginTop="@dimen/dimen_10"
-        android:includeFontPadding="false"
-        android:textColor="@color/colorAccent"
-        android:lineSpacingExtra="0dp"
-        android:textSize="@dimen/dot_text_size" />
+    <RelativeLayout
+        android:id="@+id/view_background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_row_background">
 
-    <TextView
-        android:id="@+id/timestamp"
+        <ImageView
+            android:id="@+id/delete_icon"
+            android:layout_width="@dimen/ic_delete"
+            android:layout_height="@dimen/ic_delete"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:src="@drawable/ic_delete" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/padd_10"
+            android:layout_toLeftOf="@id/delete_icon"
+            android:text="@string/delete"
+            android:textColor="#fff"
+            android:textSize="13dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/view_foreground"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/dot"
-        android:textColor="@color/timestamp"
-        android:textSize="@dimen/timestamp" />
+        android:clickable="true"
+        android:background="@android:color/white"
 
-    <TextView
-        android:id="@+id/note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/timestamp"
-        android:layout_toRightOf="@id/dot"
-        android:textColor="@color/note_list_text"
-        android:textSize="@dimen/note_list_text" />
+        android:foreground="?attr/selectableItemBackground"
+        android:paddingLeft="@dimen/activity_margin"
+        android:paddingTop="@dimen/dimen_10"
+        android:paddingRight="@dimen/activity_margin"
+        android:paddingBottom="@dimen/dimen_10">
 
-</RelativeLayout>
+
+        <TextView
+            android:id="@+id/dot"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/dot_height"
+            android:layout_marginTop="@dimen/dimen_10"
+            android:layout_marginRight="@dimen/dot_margin_right"
+            android:includeFontPadding="false"
+            android:lineSpacingExtra="0dp"
+            android:textColor="@color/colorAccent"
+            android:textSize="@dimen/dot_text_size" />
+
+        <TextView
+
+            android:id="@+id/timestamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/dot"
+            android:textColor="@color/timestamp"
+            android:textSize="@dimen/timestamp" />
+
+        <TextView
+
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/timestamp"
+            android:layout_toRightOf="@id/dot"
+            android:textColor="@color/note_list_text"
+            android:textSize="@dimen/note_list_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:textColor="@color/note_list_text"
+            android:textSize="@dimen/note_list_text" />
+    </RelativeLayout>
+</FrameLayout>
+
+
+

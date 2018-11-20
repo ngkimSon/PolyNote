@@ -10,6 +10,9 @@
     <string name="action_search">Search</string>
     <string name="search_hint">Search…</string>
     <string name="nothing">Nothing here!</string>
-
+    <string name="lbl_new_note_title">New Note</string>
+    <string name="lbl_edit_note_title">Edit Note</string>
+    <string name="my_cart">My Cart</string>
+    <string name="delete">DELETE</string>
 </resources>
 
