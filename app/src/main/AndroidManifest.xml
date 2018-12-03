@@ -46,7 +46,10 @@
             android:name=".ReportActivity"
             android:label="@string/report_title"
             android:theme="@style/Nobar" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity
+            android:name=".InfoActivity"
+            android:label="@string/about_title"
+            android:theme="@style/Nobar" />
     </application>
 
 </manifest>

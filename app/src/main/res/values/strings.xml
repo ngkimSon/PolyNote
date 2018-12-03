@@ -10,6 +10,7 @@
     <string name="action_search">Tìm kiếm</string>
     <string name="search_hint">Tìm kiếm…</string>
     <string name="report_title">Phản hồi</string>
+    <string name="about_title">Giới thiệu</string>
     <string name="note_title">Ghi chú</string>
     <string name="nothing">Chưa có ghi chú nào!</string>
     <string name="lbl_new_note_title">New Note</string>

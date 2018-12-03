@@ -2,8 +2,7 @@ package com.demon.polynote.adapter;
 
 
 import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
+
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
@@ -15,9 +14,6 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
-import com.demon.polynote.NoteActivity;
 import com.demon.polynote.R;
 import com.demon.polynote.database.DatabaseHelper;
 import com.demon.polynote.model.Note;
