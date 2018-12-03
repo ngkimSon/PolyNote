@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ReportActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:titleTextColor="#fff">
+
+        </android.support.v7.widget.Toolbar>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:text="Chọn kiểu phản hồi" />
+
+    <CheckBox
+        android:id="@+id/ckb1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Góp ý" />
+
+    <CheckBox
+        android:id="@+id/ckb2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Lỗi app" />
+
+    <CheckBox
+        android:id="@+id/ckb3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Thắc mắc" />
+
+    <EditText
+        android:id="@+id/edtReport"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:background="#fff"
+        android:gravity="top"
+        android:hint="Ý kiến đóng góp của bạn rất quan trọng đối với chúng tôi. Chúng tôi sẽ cố gắng khắc phục những điểm chưa hoàn chỉnh để hoàn thiện POLY Note ngày càng tốt hơn. Xin cảm ơn!"
+        android:padding="8dp"
+        android:textAlignment="inherit" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="report"
+        android:textColor="#fff"
+        android:background="@color/colorPrimary"
+        android:text="Gửi phản hồi" />
+</LinearLayout>

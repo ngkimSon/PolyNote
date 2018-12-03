@@ -21,7 +21,6 @@
         </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
@@ -44,7 +43,6 @@
             android:layout_gravity="center"
             android:src="@mipmap/ic_launcher_foreground" />
 
-
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -54,11 +52,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:hint="Title"
+                android:hint="Tiêu đề"
                 android:textStyle="bold" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
-
 
     <EditText
         android:id="@+id/notes"
@@ -71,7 +68,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:gravity="top"
-        android:hint="Notes"
+        android:hint="Nội dung"
 
         android:inputType="textCapSentences|textMultiLine"
         android:lines="20"
@@ -82,19 +79,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.004" />
 
-
-    <!--<android.support.design.widget.FloatingActionButton-->
-    <!--android:id="@+id/fab"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_gravity="bottom|end"-->
-    <!--android:layout_margin="@dimen/fab_margin"-->
-    <!--android:layout_marginEnd="16dp"-->
-    <!--android:layout_marginRight="16dp"-->
-    <!--android:layout_marginBottom="16dp"-->
-    <!--android:src="@drawable/ic_add"-->
-    <!--app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--app:layout_constraintEnd_toEndOf="parent" />-->
     <com.github.clans.fab.FloatingActionMenu
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_camera"
-            app:fab_label="Camera"
+            app:fab_label="Chụp ảnh"
             app:fab_size="mini" />
 
         <com.github.clans.fab.FloatingActionButton
@@ -116,7 +100,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_photo"
-            app:fab_label="Gallery"
+            app:fab_label="Ảnh từ thư viện"
             app:fab_size="mini" />
     </com.github.clans.fab.FloatingActionMenu>
+
 </android.support.constraint.ConstraintLayout>

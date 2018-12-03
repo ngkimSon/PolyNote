@@ -1,11 +1,12 @@
 package com.demon.polynote;
 
+import android.app.AlertDialog;
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -29,15 +30,11 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.demon.polynote.adapter.NotesAdapter;
 import com.demon.polynote.database.DatabaseHelper;
 import com.demon.polynote.model.Note;
 import com.demon.polynote.utils.MyDividerItemDecoration;
 import com.demon.polynote.utils.RecyclerTouchListener;
-import com.google.gson.Gson;
-
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +49,6 @@ public class MainActivity extends AppCompatActivity
     private List<Note> notesList = new ArrayList<>();
     private CoordinatorLayout coordinatorLayout;
     private static final String TAG = MainActivity.class.getSimpleName();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,28 +83,21 @@ public class MainActivity extends AppCompatActivity
                 bundle.putByteArray("IMAGE", notesList.get(position).getImage());
                 intent.putExtras(bundle);
                 startActivity(intent);
-
             }
-
             @Override
             public void onLongClick(View view, int position) {
-
             }
         }));
-
-
         ItemTouchHelper.SimpleCallback itemTouchHelperCallback1 = new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT | ItemTouchHelper.RIGHT | ItemTouchHelper.UP) {
             @Override
             public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
                 return false;
             }
-
             @Override
             public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
                 // Row is swiped from recycler view
                 // remove it from adapter
             }
-
             @Override
             public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY, int actionState, boolean isCurrentlyActive) {
                 super.onChildDraw(c, recyclerView, viewHolder, dX, dY, actionState, isCurrentlyActive);
@@ -117,8 +106,6 @@ public class MainActivity extends AppCompatActivity
 
         // attaching the touch helper to recycler view
         new ItemTouchHelper(itemTouchHelperCallback1).attachToRecyclerView(recyclerView);
-
-
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -134,7 +121,6 @@ public class MainActivity extends AppCompatActivity
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         toggleEmptyNotes();
@@ -151,23 +137,16 @@ public class MainActivity extends AppCompatActivity
 //        }
 //    }
     private void fetchContacts() {
-
-
-
         // adding contacts to contacts list
         notesList.clear();
         notesList.addAll(notesList);
-
         // refreshing recycler view
         mAdapter.notifyDataSetChanged();
-
-
-}
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
-
         // Associate searchable configuration with the SearchView
         SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         searchView = (SearchView) menu.findItem(R.id.action_search)
@@ -183,7 +162,6 @@ public class MainActivity extends AppCompatActivity
                 mAdapter.getFilter().filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String query) {
                 // filter recycler view when text is changed
@@ -193,22 +171,18 @@ public class MainActivity extends AppCompatActivity
         });
         return true;
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_search) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
-
     @Override
     public void onBackPressed() {
         // close search view on back button pressed
@@ -218,41 +192,50 @@ public class MainActivity extends AppCompatActivity
         }
         super.onBackPressed();
     }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.nav_report) {
             // Handle the camera action
+            startActivity(new Intent(MainActivity.this, ReportActivity.class));
         } else if (id == R.id.nav_about) {
-
+            startActivity(new Intent(MainActivity.this, InfoActivity.class));
         } else if (id == R.id.nav_comment) {
-
+            Toast.makeText(this, "Nếu thấy ứng dụng hay hãy đánh giá chúng tôi 5* trên Play store!", Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_exit) {
-
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        Thiet lap tt Title, message,button
+            builder.setTitle("Thông báo");
+            builder.setMessage("Xác nhận thoát");
+            builder.setPositiveButton("Có", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    finish();
+                }
+            });
+            builder.setNegativeButton("Không", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                }
+            });
+            builder.show();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         notesList.clear();
         notesList.addAll(db.getAllNotes());
         mAdapter.changeDataset(notesList);
-
         toggleEmptyNotes();
     }
-
     private void toggleEmptyNotes() {
         // you can check notesList.size() > 0
-
         if (db.getNotesCount() > 0) {
             tvNull.setVisibility(View.GONE);
         } else {
@@ -260,28 +243,23 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-
     @Override
     public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction, int position) {
         if (viewHolder instanceof NotesAdapter.MyViewHolder) {
             // get the removed item name to display it in snack bar
             String name = notesList.get(viewHolder.getAdapterPosition()).getTitle();
-
             // backup of removed item for undo purpose
             final Note deletedItem = notesList.get(viewHolder.getAdapterPosition());
             final int deletedIndex = viewHolder.getAdapterPosition();
-
             // remove the item from recycler view
             mAdapter.removeItem(position);
-
 //            deleteNote(position);
             // showing snack bar with Undo option
             Snackbar snackbar = Snackbar
-                    .make(coordinatorLayout, " Restore note!", Snackbar.LENGTH_LONG);
-            snackbar.setAction("UNDO", new View.OnClickListener() {
+                    .make(coordinatorLayout, " Khôi phục ghi chú!", Snackbar.LENGTH_LONG);
+            snackbar.setAction("HOÀN TÁC", new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
                     // undo is selected, restore the deleted item
                     mAdapter.restoreItem(deletedItem, deletedIndex);
                 }
@@ -291,23 +269,18 @@ public class MainActivity extends AppCompatActivity
             toggleEmptyNotes();
         }
     }
-
     private void showNoteActivity(final Note note, final int position) {
-
         LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getApplicationContext());
         View view = layoutInflaterAndroid.inflate(R.layout.activity_note, null);
-
         final EditText notes = view.findViewById(R.id.notes);
         final EditText title = view.findViewById(R.id.title);
         final ImageView image = view.findViewById(R.id.img);
-
         if (note != null) {
             notes.setText(note.getNote());
             notes.setText(note.getNote());
             notes.setText(note.getNote());
         }
     }
-
     @Override
     public void onNoteSelected(Note note) {
         Intent intent = new Intent(MainActivity.this, NoteActivity.class);
@@ -319,13 +292,4 @@ public class MainActivity extends AppCompatActivity
         intent.putExtras(bundle);
         startActivity(intent);
     }
-
-//    private void whiteNotificationBar(View view) {
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-//            int flags = view.getSystemUiVisibility();
-//            flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-//            view.setSystemUiVisibility(flags);
-//            getWindow().setStatusBarColor(Color.WHITE);
-//        }
-//    }
 }

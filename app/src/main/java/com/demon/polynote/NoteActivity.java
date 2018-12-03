@@ -20,17 +20,14 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.demon.polynote.adapter.NotesAdapter;
 import com.demon.polynote.database.DatabaseHelper;
 import com.demon.polynote.model.Note;
-
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -54,7 +51,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
     public static final String ALLOW_KEY = "ALLOWED";
     public static final String CAMERA_PREF = "camera_pref";
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,11 +64,8 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
         mAdapter = new NotesAdapter(this, notesList, this);
         fabGallery = findViewById(R.id.fabGallery);
         toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-
         setSupportActionBar(toolbar);
 //load data into form
-
-
         Intent in = getIntent();
         Bundle b = in.getExtras();
         if (b != null) {
@@ -80,7 +73,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
             title.setText(b.getString("TITLE"));
             notes.setText(b.getString("NOTES"));
             Glide.with(NoteActivity.this).load(b.getByteArray("IMAGE")).into(img);
-
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,10 +80,8 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
                         Toast.makeText(NoteActivity.this, "Đã cập nhật.", Toast.LENGTH_SHORT).show();
                         finish();
                     }
-
                 }
             });
-
         } else {
             toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                 @Override
@@ -102,8 +92,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
                 }
             });
         }
-
-
         fabCamera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -131,8 +119,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
                     Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(i, CAPTURE_PHOTO);
                 }
-
-
             }
         });
         fabGallery.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +134,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case SELECT_PHOTO:
                 if (resultCode == RESULT_OK) {
@@ -173,7 +158,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
         }
     }
 
-
     private byte[] ImageViewChange(ImageView imageView) {
         BitmapDrawable drawable = (BitmapDrawable) imageView.getDrawable();
         Bitmap bitmap = drawable.getBitmap();
@@ -189,7 +173,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
         prefsEditor.putBoolean(key, allowed);
         prefsEditor.commit();
     }
-
     private void showAlert() {
         AlertDialog alertDialog = new AlertDialog.Builder(NoteActivity.this).create();
         alertDialog.setTitle("Alert");
@@ -214,7 +197,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
                 });
         alertDialog.show();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -249,7 +231,6 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
                 Context.MODE_PRIVATE);
         return (myPrefs.getBoolean(key, false));
     }
-
     public static void startInstalledAppDetailsActivity(final Activity context) {
         if (context == null) {
             return;
@@ -264,9 +245,7 @@ public class NoteActivity extends AppCompatActivity implements NotesAdapter.Note
         context.startActivity(i);
     }
 
-
     @Override
     public void onNoteSelected(Note note) {
-
     }
 }

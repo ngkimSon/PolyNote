@@ -43,6 +43,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String charString = constraint.toString();
+                FilterResults results = new FilterResults();
                 if (charString.isEmpty()) {
                     notesListFiltered = notesList;
                 } else {
@@ -51,7 +52,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
 
                         // name match condition. this might differ depending on your requirement
                         // here we are looking for name or phone number match
-                        if (row.getTitle().toUpperCase().startsWith(constraint.toString().toUpperCase())) {
+                        if (row.getTitle().toLowerCase().startsWith(constraint.toString().toLowerCase())) {
                             filteredList.add(row);
                         }
                     }
@@ -59,9 +60,10 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
                     notesListFiltered = filteredList;
                 }
 
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = notesListFiltered;
-                return filterResults;
+
+                results.values = notesListFiltered;
+                results.count = notesListFiltered.size();
+                return results;
             }
 
             @Override
@@ -101,7 +103,7 @@ public class NotesAdapter extends RecyclerView.Adapter<NotesAdapter.MyViewHolder
     }
 
 
-    public NotesAdapter(Context context, List<Note> notesList,NotesAdapterListener listener) {
+    public NotesAdapter(Context context, List<Note> notesList, NotesAdapterListener listener) {
         this.context = context;
         this.listener = listener;
         this.notesList = notesList;
